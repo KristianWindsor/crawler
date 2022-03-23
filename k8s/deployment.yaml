@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crawler
+spec:
+  selector:
+    matchLabels:
+      app: crawler
+  template:
+    metadata:
+      labels:
+        app: crawler
+    spec:
+      containers:
+        - name: crawler
+          image: kristianwindsor/crawler
+          ports:
+            - containerPort: 5002
+          env:
+            - name: DEBUG_MODE
+              value: "false"
+          resources:
+            requests:
+              memory: "480Mi"
+              cpu: "240m"
+            limits:
+              memory: "960Mi"
+              cpu: "480m"
